@@ -4,8 +4,19 @@ A tutorial for using Metaphlan
 
 1. Clone the GitHub repo into a main folder
 2. Create a folder called VirtualPy containing the requirements.txt file into the main folder
-3. Download MetaPhlAn from the internet into another folder inside the main folder
-4. Run datafastq.txt to populate the Data directory
+3. Run configure_metaphlan.sh by typing ./configure_metaphlan.sh
+	This will create a Python Virtual Environment containing all the modules needed to run MetaPhlAn
+	See below for more info on Virtual Environments
+4. Download MetaPhlAn from the internet into another folder inside the main folder
+5. Run datafastq.txt to populate the Data directory
 	by typing qsub "".txt
-5. Run MetaBowtie2.txt to run Bowtie and save results
-6. Run Graphics4.txt to merge files and create heatmaps
+6. Run MetaBowtie2.txt to run Bowtie and save results
+7. Run Graphics4.txt to merge files and create heatmaps
+
+
+
+
+
+
+*Python Virtual Environments
+The configure_metaphlan.sh script takes 30 min to run.
