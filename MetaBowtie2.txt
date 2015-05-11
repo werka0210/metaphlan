@@ -1,0 +1,72 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -M eml75@drexel.edu
+#$ -P nsftuesPrj
+#$ -l h_rt=6:00:00
+#$ -l h_vmem=8G
+#$ -q all.q
+
+PATH=/mnt/HA/groups/nsftuesGrp/.local/bin:$PATH
+# DATADIR=$HOME/tutorial07/data
+# mkdir -p $DATADIR
+
+# ---Keep this---
+
+. /etc/profile.d/modules.sh
+module load shared
+module load proteus
+module load sge/univa
+module load gcc/4.8.1
+
+module load bowtie2/2.2.5
+
+# ---Keep this---
+
+ids=( \
+# SRR492065 \
+# SRR492066 \
+# SRR492182 \
+# SRR492183 \
+# SRR492184 \
+# SRR492185 \
+# SRR492186 \
+# SRR492187 \
+# SRR492188 \
+# SRR492189 \
+# SRR492190 \
+# SRR492191 \
+# SRR492192 \
+# SRR492193 \
+# SRR492194 \
+SRR492195 \
+# SRR492196 \
+# SRR492197
+)
+
+cd metaphlan
+
+export PATH=`pwd`:$PATH
+mpa_dir=`pwd`
+
+mkdir -p profiled_samples
+mkdir -p bowtieout
+
+for i in "${ids[@]}"
+
+# for s in ${samples}
+
+do
+
+#metaphlan.py input/SRR492197.fastq  --bowtie2db bowtie2db/mpa --bt2_ps very-sensitive --input_type fastq > profiled_samples/BM_SRR492197.txt
+
+#  metaphlan.py input/$i.fastq --mpa_pkl ${mpa_dir}/db_v20/mpa_v20_m200.pkl --bowtie2db ${mpa_dir}/db_v20/mpa_v20_m200 \
+# --bowtie2out bowtieout/${s}.bowtie2.bz2 --nproc 5 --input_type multifastq > profiled_samples/BM_${s}.txt
+
+ ./metaphlan.py input/$i.fastq --bowtie2db bowtie2db/mpa --bt2_ps very-sensitive --nproc 5  --input_type multifastq \
+   --bowtie2out bowtieout/TD_$i.bt2out \
+   > profiled_samples/TD_$i.txt
+
+done
+
